@@ -4,42 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Arial', sans-serif;
             background-color: #f0f0f0;
             color: #333;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #343a40;
             color: white;
-            padding: 15px;
-            text-align: center;
+            padding: 40px 0;
         }
-        nav {
-            margin: 20px;
-            text-align: center;
+        header h1 {
+            font-size: 3em;
         }
         nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #4CAF50;
+            color: #343a40;
             font-weight: bold;
         }
         section {
-            margin: 20px;
-            padding: 20px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 20px;
         }
         footer {
-            background-color: #4CAF50;
+            background-color: #343a40;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 10px 0;
             position: fixed;
             width: 100%;
             bottom: 0;
@@ -48,36 +43,112 @@
 </head>
 <body>
 
-<header>
-    <h1>Bienvenue sur Mon Portfolio</h1>
+<header class="text-center">
+    <div class="container">
+        <h1>Bienvenue sur Mon Portfolio</h1>
+    </div>
 </header>
 
-<nav>
-    <a href="#">Accueil</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Accueil</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">À propos de moi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#expériences">Mes Expériences</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#projects">Mes Projets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
-<section id="about">
-    <h2>À propos de moi</h2>
-    <p>Je suis un développeur passionné.</p>
-</section>
-
-<section id="projects">
-    <h2>Mes Projets</h2>
-    <ul>
-        <li><a href="https://github.com/lulunoel/KingObsi">KingObsi</a></li>
-        <li><a href="https://github.com/lulunoel/KingEvent">KingEvent</a></li>
-        <li><a href="https://github.com/lulunoel/lulunoel.github.io">lulunoel.github.io</a></li>
+<div class="container">
+    <section id="about" class="mt-5">
+        <h2 class="text-center">À propos de moi</h2>
+        <p class="text-center">Je suis un développeur passionné.</p>
+        <h2 class="text-center">Compétences</h2>
+    <ul class="list-group">
+        <p class="list-group-item">Configuration de plugin minecraft.</p>
+        <p class="list-group-item">Configuration de nom de domaine / protection.</p>
+        <p class="list-group-item">Configuration de site internet.</p>
+        <p class="list-group-item">Développement de plugin minecraft (Java).</p>
+        <p class="list-group-item">Développement de mod minecraft (Java).</p>
+        <p class="list-group-item">Développement de site internet (html,php,css).</p>
+        <p class="list-group-item">Développement d'application (c++,c#).</p>
+        <p class="list-group-item">Développement de bot discord (js).</p>
     </ul>
-</section>
+    </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Vous pouvez me contacter à l'adresse suivante : <a href="mailto:lucas.crendal@gmail.com">lucas.crendal@gmail.com</a></p>
-</section>
+    <section id="expériences">
+        <h2 class="text-center">Mes Expériences</h2>
+        <p class="text-center">Expériences actuels récents.</p>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="https://discord.gg/AX7uKQ5uuA">Nexuria Fondateur</a></li>
+            <li class="list-group-item"><a href="https://discord.gg/PPEQRf9wwu">NexuCup Fondateur</a></li>
+            <li class="list-group-item"><a href="https://discord.gg/XC9NG9JK2M">ArkaMC Fondateur</a></li>
+            <li class="list-group-item"><a href="https://discord.gg/3r6ht9xYaG">Justfight Fondateur</a></li>
+            <li class="list-group-item"><a href="https://discord.gg/kingfightmc">KingFight Developpeur</a></li>
+            <li class="list-group-item"><a href="https://discord.gg/Je4aSaSX7r">AeriaSky Developpeur</a></li>
+            <li class="list-group-item"><a href="https://discord.gg/pw8vqcK76G">Sunasia Developpeur</a></li>
+        </ul>
+        <p class="text-center"> </p>
+        <p class="text-center">Expériences passées récents.</p>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="https://discord.gg/jedisky">Jedisky v1 Fondateur</a></li>
+            <li class="list-group-item"><a href="https://discord.gg/sealife">SeaLife Helper</a></li>
+            <p class="list-group-item">(Closed) Skylite v1 v2 Fondateur</p>
+
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2 class="text-center">Mes Projets</h2>
+        <p class="text-center">Listes des projets récents.</p>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="https://github.com/lulunoel/KingObsi">KingObsi</a></li>
+            <li class="list-group-item"><a href="https://github.com/lulunoel/KingEvent">KingEvent</a></li>
+            <li class="list-group-item"><a href="https://github.com/lulunoel/lulunoel.github.io">lulunoel.github.io</a></li>
+            <li class="list-group-item">(Private) Custom Saber Factions</a></li>
+            <li class="list-group-item">(Private) Kingchest</a></li>
+            <li class="list-group-item">(Private) Kingdon</a></li>
+            <li class="list-group-item">(Private) kingprivate</a></li>
+            <li class="list-group-item">(Private) SendActionBar</a></li>
+            <li class="list-group-item">(Private) Classement</a></li>
+            <li class="list-group-item">(Private) HSevents</a></li>
+            <li class="list-group-item">(Private) Largage</a></li>
+            <li class="list-group-item">(Private) Moderation</a></li>
+            <li class="list-group-item">(Private) outpost</a></li>
+            <li class="list-group-item">(Private) PlayerInfoPlugin</a></li>
+            <li class="list-group-item">(Private) Staff</a></li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2 class="text-center">Contact</h2>
+        <p class="text-center">Vous pouvez me contacter à l'adresse suivante : <a href="mailto:lucas.crendal@gmail.com">lucas.crendal@gmail.com</a></p>
+        <p class="text-center">Vous pouvez me contacter sur Discord : <a href="https://discordapp.com/users/889560469562605618">lulunoel2016</a></p>
+        <p class="text-center">Vous pouvez me contacter à sur github : <a href="https://github.com/lulunoel">lulunoel</a></p>
+    </section>
+</div>
 
 <footer>
-    &copy; 2024 Mon Portfolio. Tous droits réservés.
+    &copy; Lulunoel2016 2024 Mon Portfolio. Tous droits réservés.
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
