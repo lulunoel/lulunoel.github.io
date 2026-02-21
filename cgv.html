@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGV — Lucas Crendal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #080810;
+            --bg-secondary: #0d0d1a;
+            --accent: #7c3aed;
+            --accent-light: #a855f7;
+            --accent-dim: rgba(124,58,237,0.12);
+            --border-accent: rgba(124,58,237,0.25);
+            --text-primary: #f8f7ff;
+            --text-secondary: #a1a1b5;
+            --text-muted: #6b6b8a;
+            --border: rgba(255,255,255,0.06);
+            --glass-bg: rgba(255,255,255,0.02);
+            --glass-border: rgba(255,255,255,0.07);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            backdrop-filter: blur(20px);
+            background: rgba(8,8,16,0.85);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
+        .nav-logo span { background: linear-gradient(135deg, var(--accent), var(--accent-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-back { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+        .nav-back:hover { color: var(--accent-light); }
+
+        main { max-width: 800px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+        .page-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--glass-border); }
+        .page-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.75rem; display: block; }
+        .page-title { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+        .page-meta { font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+        .notice {
+            background: var(--accent-dim);
+            border: 1px solid var(--border-accent);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .notice strong { color: var(--accent-light); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.25rem 0;
+        }
+        .service-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 1rem 1.1rem;
+        }
+        .service-name { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .service-desc { font-size: 0.78rem; color: var(--text-muted); }
+
+        .legal-section { margin-bottom: 2.5rem; }
+        .legal-section h2 { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; padding-left: 1rem; border-left: 3px solid var(--accent); }
+        .legal-section h3 { font-size: 0.95rem; font-weight: 600; color: var(--text-secondary); margin: 1.1rem 0 0.4rem; }
+        .legal-section p { color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem; }
+        .legal-section ul { list-style: none; padding-left: 0; margin-bottom: 0.75rem; }
+        .legal-section ul li { color: var(--text-secondary); font-size: 0.9rem; padding: 0.25rem 0 0.25rem 1.25rem; position: relative; }
+        .legal-section ul li::before { content: '›'; position: absolute; left: 0; color: var(--accent-light); }
+        .placeholder { display: inline-block; background: rgba(124,58,237,0.1); border: 1px dashed rgba(124,58,237,0.4); border-radius: 4px; padding: 0 0.35rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8em; color: var(--accent-light); }
+        a { color: var(--accent-light); }
+
+        .tarif-note {
+            background: rgba(34,197,94,0.05);
+            border: 1px solid rgba(34,197,94,0.15);
+            border-radius: 8px;
+            padding: 0.9rem 1.1rem;
+            font-size: 0.85rem;
+            color: #86efac;
+            margin: 0.75rem 0;
+        }
+
+        footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); }
+        footer a { color: var(--accent-light); text-decoration: none; margin: 0 0.5rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo"><span>LC</span> / dev</a>
+    <a href="index.html" class="nav-back">← Retour au portfolio</a>
+</nav>
+
+<main>
+    <div class="page-header">
+        <span class="page-label">Légal</span>
+        <h1 class="page-title">Conditions Générales de Vente</h1>
+        <div class="page-meta">Dernière mise à jour : Février 2026 &nbsp;·&nbsp; Version 1.0</div>
+    </div>
+
+    <div class="notice">
+        <strong>Note :</strong> Ces CGV sont établies dans le cadre de la création d'un statut auto-entrepreneur.
+        Les champs <span class="placeholder">[À REMPLIR]</span> seront complétés lors de l'immatriculation officielle.
+        Ce document constitue la base contractuelle applicable à toute prestation.
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 1 — Prestataire</h2>
+        <p>
+            Les présentes Conditions Générales de Vente (CGV) s'appliquent à toutes les prestations
+            réalisées par :
+        </p>
+        <ul>
+            <li><strong>Nom :</strong> Lucas Crendal</li>
+            <li><strong>Activité :</strong> Développeur indépendant (auto-entrepreneur)</li>
+            <li><strong>Statut :</strong> En cours de création</li>
+            <li><strong>SIRET :</strong> <span class="placeholder">[EN COURS D'ATTRIBUTION]</span></li>
+            <li><strong>Régime :</strong> Micro-entreprise — Non soumis à TVA (art. 293 B du CGI) <span class="placeholder">[À CONFIRMER]</span></li>
+            <li><strong>Email :</strong> lucas.crendal@gmail.com</li>
+        </ul>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 2 — Champ d'application</h2>
+        <p>
+            Ces CGV s'appliquent à toute commande de prestations de développement informatique
+            passée par un client (ci-après "le Client") auprès de Lucas Crendal (ci-après "le Prestataire").
+        </p>
+        <p>
+            Toute commande implique l'acceptation pleine et entière des présentes CGV par le Client.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 3 — Prestations proposées</h2>
+        <p>Le Prestataire propose les services suivants :</p>
+        <div class="services-grid">
+            <div class="service-item">
+                <div class="service-name">Plugins Minecraft</div>
+                <div class="service-desc">Développement Java sur mesure (Spigot, Paper, BungeeCord)</div>
+            </div>
+            <div class="service-item">
+                <div class="service-name">Bots Discord</div>
+                <div class="service-desc">Création de bots Python ou JavaScript (discord.py, discord.js)</div>
+            </div>
+            <div class="service-item">
+                <div class="service-name">Sites web</div>
+                <div class="service-desc">Développement HTML, CSS, JavaScript, PHP</div>
+            </div>
+            <div class="service-item">
+                <div class="service-name">Applications</div>
+                <div class="service-desc">Applications bureau en C# ou C++</div>
+            </div>
+            <div class="service-item">
+                <div class="service-name">Configuration</div>
+                <div class="service-desc">Config serveur, noms de domaine, hébergement</div>
+            </div>
+            <div class="service-item">
+                <div class="service-name">Conseil</div>
+                <div class="service-desc">Audit technique et recommandations</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 4 — Commandes et devis</h2>
+        <p>
+            Toute prestation débute par une prise de contact (email ou Discord) décrivant le besoin du Client.
+            Le Prestataire établit ensuite un devis gratuit et sans engagement.
+        </p>
+        <p>
+            La commande est validée à réception du bon de commande signé ou de la confirmation écrite du Client
+            (email), accompagnée du règlement de l'acompte convenu le cas échéant.
+        </p>
+        <h3>Processus</h3>
+        <ul>
+            <li>Prise de contact et description du projet</li>
+            <li>Devis détaillé envoyé sous 48-72h</li>
+            <li>Validation par le Client</li>
+            <li>Début de la prestation après réception de l'acompte (si applicable)</li>
+            <li>Livraison et recette</li>
+            <li>Facturation du solde</li>
+        </ul>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 5 — Tarifs</h2>
+        <div class="tarif-note">
+            Les tarifs sont définis au cas par cas selon la complexité du projet, le délai et les technologies impliquées.
+            Un devis personnalisé est systématiquement fourni avant tout engagement.
+        </div>
+        <p>
+            Les tarifs indiqués dans les devis sont exprimés en euros (€).
+            En tant que micro-entrepreneur (sous réserve du régime TVA applicable), les prestations peuvent être
+            facturées hors taxes avec la mention « TVA non applicable, article 293 B du CGI »
+            <span class="placeholder">[À CONFIRMER AU MOMENT DE L'IMMATRICULATION]</span>.
+        </p>
+        <p>
+            Le Prestataire se réserve le droit de modifier ses tarifs à tout moment.
+            Les prestations en cours restent facturées au tarif convenu dans le devis validé.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 6 — Modalités de paiement</h2>
+        <ul>
+            <li>Paiement par virement bancaire, PayPal ou autre moyen convenu entre les parties</li>
+            <li>Acompte de <span class="placeholder">[30 à 50 %]</span> à la commande pour les projets dépassant <span class="placeholder">[X €]</span></li>
+            <li>Solde à la livraison ou selon l'échéancier défini dans le devis</li>
+            <li>Délai de paiement : <strong>30 jours</strong> à réception de la facture</li>
+        </ul>
+        <h3>Retard de paiement</h3>
+        <p>
+            En cas de retard de paiement, des pénalités de retard au taux de 3 fois le taux d'intérêt légal
+            seront appliquées, ainsi qu'une indemnité forfaitaire de recouvrement de 40 € (art. L.441-10 du Code de commerce).
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 7 — Délais de livraison</h2>
+        <p>
+            Les délais de livraison sont définis dans le devis et dépendent de la nature et de la complexité du projet.
+            Ces délais sont donnés à titre indicatif et ne constituent pas un engagement ferme sauf mention explicite.
+        </p>
+        <p>
+            En cas de retard imputable au Prestataire et significatif, le Client peut demander une réduction
+            du prix après mise en demeure restée sans effet pendant 15 jours.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 8 — Obligations des parties</h2>
+        <h3>Obligations du Prestataire</h3>
+        <ul>
+            <li>Réaliser la prestation conformément au cahier des charges validé</li>
+            <li>Respecter la confidentialité des informations du Client</li>
+            <li>Informer le Client de toute difficulté technique susceptible d'affecter le projet</li>
+            <li>Livrer les fichiers sources si inclus dans le devis</li>
+        </ul>
+        <h3>Obligations du Client</h3>
+        <ul>
+            <li>Fournir les informations et accès nécessaires à la réalisation de la prestation</li>
+            <li>Valider les étapes du projet dans les délais convenus</li>
+            <li>Régler les factures dans les délais impartis</li>
+            <li>Ne pas utiliser les livrables à des fins illégales</li>
+        </ul>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 9 — Propriété intellectuelle</h2>
+        <p>
+            Le Prestataire conserve la propriété intellectuelle des travaux réalisés jusqu'au paiement intégral
+            de la prestation.
+        </p>
+        <p>
+            Après paiement complet, le Client acquiert une licence d'utilisation des livrables selon les termes
+            définis dans le devis. Le transfert de propriété intégral (cession de droits) doit être
+            expressément mentionné dans le devis pour être applicable.
+        </p>
+        <p>
+            Le Prestataire se réserve le droit de mentionner la prestation dans son portfolio, sauf accord
+            contraire explicite du Client.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 10 — Garantie et responsabilité</h2>
+        <p>
+            Le Prestataire garantit ses livrables contre les défauts de conformité pendant une durée de
+            <strong>30 jours</strong> à compter de la livraison. Les corrections dans ce délai sont effectuées gratuitement.
+        </p>
+        <p>
+            La responsabilité du Prestataire est limitée au montant total de la prestation facturée.
+            Il ne saurait être tenu responsable de dommages indirects (perte de données, perte de revenus, etc.).
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 11 — Résiliation</h2>
+        <p>
+            En cas de manquement grave de l'une ou l'autre partie à ses obligations, le contrat peut être
+            résilié par lettre recommandée avec accusé de réception, après mise en demeure restée sans effet
+            pendant 15 jours.
+        </p>
+        <p>
+            En cas de résiliation à l'initiative du Client, le travail déjà réalisé reste dû et facturé
+            au prorata, majoré d'une indemnité de <strong>15 %</strong> du montant total du devis.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 12 — Confidentialité</h2>
+        <p>
+            Le Prestataire s'engage à ne pas divulguer les informations confidentielles du Client à des tiers,
+            sauf obligation légale. Cette obligation de confidentialité perdure après la fin de la prestation.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 13 — Loi applicable et litiges</h2>
+        <p>
+            Les présentes CGV sont soumises au droit français.
+            En cas de litige, les parties s'engagent à rechercher une solution amiable avant toute action judiciaire.
+            À défaut d'accord amiable, le litige sera soumis aux tribunaux compétents du ressort de la juridiction française.
+        </p>
+    </div>
+</main>
+
+<footer>
+    &copy; 2026 Lucas Crendal
+    <br style="margin-bottom:0.5rem;">
+    <a href="index.html">Portfolio</a>
+    <a href="cgu.html">CGU</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+</footer>
+
+</body>
+</html>

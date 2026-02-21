@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGU — Lucas Crendal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #080810;
+            --bg-secondary: #0d0d1a;
+            --accent: #7c3aed;
+            --accent-light: #a855f7;
+            --accent-dim: rgba(124,58,237,0.12);
+            --border-accent: rgba(124,58,237,0.25);
+            --text-primary: #f8f7ff;
+            --text-secondary: #a1a1b5;
+            --text-muted: #6b6b8a;
+            --border: rgba(255,255,255,0.06);
+            --glass-bg: rgba(255,255,255,0.02);
+            --glass-border: rgba(255,255,255,0.07);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            backdrop-filter: blur(20px);
+            background: rgba(8,8,16,0.85);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.05rem; font-weight: 700;
+            color: var(--text-primary); text-decoration: none;
+        }
+        .nav-logo span { background: linear-gradient(135deg, var(--accent), var(--accent-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-back {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            font-size: 0.85rem; color: var(--text-secondary);
+            text-decoration: none; transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--accent-light); }
+
+        main { max-width: 800px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+        .page-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .page-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem; color: var(--accent-light);
+            text-transform: uppercase; letter-spacing: 0.2em;
+            margin-bottom: 0.75rem; display: block;
+        }
+        .page-title { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+        .page-meta { font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+        .notice {
+            background: var(--accent-dim);
+            border: 1px solid var(--border-accent);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .notice strong { color: var(--accent-light); }
+
+        .legal-section { margin-bottom: 2.5rem; }
+        .legal-section h2 {
+            font-size: 1.15rem; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 0.75rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent);
+        }
+        .legal-section h3 { font-size: 1rem; font-weight: 600; color: var(--text-secondary); margin: 1rem 0 0.5rem; }
+        .legal-section p { color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.9rem; }
+        .legal-section ul { list-style: none; padding-left: 0; margin-bottom: 0.75rem; }
+        .legal-section ul li {
+            color: var(--text-secondary); font-size: 0.9rem;
+            padding: 0.25rem 0 0.25rem 1.25rem; position: relative;
+        }
+        .legal-section ul li::before { content: '›'; position: absolute; left: 0; color: var(--accent-light); }
+        .placeholder {
+            display: inline-block;
+            background: rgba(124,58,237,0.1);
+            border: 1px dashed rgba(124,58,237,0.4);
+            border-radius: 4px;
+            padding: 0 0.35rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8em;
+            color: var(--accent-light);
+        }
+        a { color: var(--accent-light); }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        footer a { color: var(--accent-light); text-decoration: none; margin: 0 0.5rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo"><span>LC</span> / dev</a>
+    <a href="index.html" class="nav-back">← Retour au portfolio</a>
+</nav>
+
+<main>
+    <div class="page-header">
+        <span class="page-label">Légal</span>
+        <h1 class="page-title">Conditions Générales d'Utilisation</h1>
+        <div class="page-meta">Dernière mise à jour : Février 2026 &nbsp;·&nbsp; Version 1.0</div>
+    </div>
+
+    <div class="notice">
+        <strong>Note :</strong> Ces CGU sont en cours de finalisation dans le cadre de la création d'un statut auto-entrepreneur.
+        Certains champs marqués <span class="placeholder">[À REMPLIR]</span> seront complétés lors de l'immatriculation.
+        Ce document est néanmoins valide dans sa forme actuelle.
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 1 — Objet</h2>
+        <p>
+            Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation du site
+            web <strong>lulunoel.github.io</strong> (ci-après "le Site"), portfolio professionnel de Lucas Crendal,
+            développeur indépendant.
+        </p>
+        <p>
+            En accédant au Site, vous acceptez sans réserve les présentes CGU. Si vous n'acceptez pas ces conditions,
+            veuillez ne pas utiliser le Site.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 2 — Éditeur du site</h2>
+        <p>Le Site est édité par :</p>
+        <ul>
+            <li><strong>Nom :</strong> Lucas Crendal</li>
+            <li><strong>Statut :</strong> Auto-entrepreneur en cours de création</li>
+            <li><strong>SIRET :</strong> <span class="placeholder">[EN COURS D'ATTRIBUTION]</span></li>
+            <li><strong>Email :</strong> lucas.crendal@gmail.com</li>
+            <li><strong>Hébergeur :</strong> GitHub Pages (GitHub, Inc. — 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA)</li>
+        </ul>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 3 — Accès au site</h2>
+        <p>
+            Le Site est accessible gratuitement à tout utilisateur disposant d'un accès internet.
+            Tous les frais liés à l'accès au Site (connexion internet, équipement informatique) sont à la charge de l'utilisateur.
+        </p>
+        <p>
+            Lucas Crendal se réserve le droit de modifier, suspendre ou interrompre l'accès au Site à tout moment,
+            sans préavis ni indemnité.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 4 — Propriété intellectuelle</h2>
+        <p>
+            L'ensemble du contenu du Site (textes, graphismes, code source, logos, structure) est la propriété exclusive
+            de Lucas Crendal, sauf mentions contraires.
+        </p>
+        <p>
+            Les projets open-source présentés sur le Site sont soumis à leurs licences respectives
+            (MIT, Apache 2.0, etc.) disponibles sur les dépôts GitHub correspondants.
+        </p>
+        <p>
+            Toute reproduction, représentation, modification ou exploitation non autorisée du contenu du Site
+            est strictement interdite et constituerait une contrefaçon.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 5 — Données personnelles</h2>
+        <p>
+            Le Site est un portfolio statique hébergé sur GitHub Pages. Il ne collecte pas directement
+            de données personnelles et n'utilise pas de cookies de traçage.
+        </p>
+        <p>
+            Les informations communiquées via les liens de contact (email, Discord) sont traitées uniquement
+            dans le cadre de la réponse à votre demande et ne sont pas transmises à des tiers.
+        </p>
+        <p>
+            Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression
+            de vos données. Pour exercer ce droit, contactez : <a href="mailto:lucas.crendal@gmail.com">lucas.crendal@gmail.com</a>
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 6 — Liens hypertextes</h2>
+        <p>
+            Le Site peut contenir des liens vers des sites tiers (GitHub, Discord, etc.).
+            Lucas Crendal n'est pas responsable du contenu de ces sites et du respect
+            de leur politique de confidentialité.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 7 — Responsabilité</h2>
+        <p>
+            Lucas Crendal s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur le Site.
+            Toutefois, il ne peut garantir l'exhaustivité, l'exactitude ou l'actualité de ces informations.
+        </p>
+        <p>
+            La responsabilité de Lucas Crendal ne saurait être engagée en cas de dommages directs ou indirects
+            résultant de l'utilisation du Site ou de l'impossibilité d'y accéder.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 8 — Loi applicable</h2>
+        <p>
+            Les présentes CGU sont soumises au droit français. En cas de litige, les tribunaux compétents
+            seront ceux du ressort de la juridiction française.
+        </p>
+    </div>
+
+    <div class="legal-section">
+        <h2>Article 9 — Modifications</h2>
+        <p>
+            Lucas Crendal se réserve le droit de modifier les présentes CGU à tout moment.
+            Les utilisateurs sont invités à les consulter régulièrement.
+        </p>
+    </div>
+</main>
+
+<footer>
+    &copy; 2026 Lucas Crendal
+    <br style="margin-bottom:0.5rem;">
+    <a href="index.html">Portfolio</a>
+    <a href="cgv.html">CGV</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+</footer>
+
+</body>
+</html>
